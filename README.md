@@ -45,3 +45,7 @@ React file
  -Named Export/import
  export const Component;
  import {Component} from "path"
+
+#React hooks
+-useState 
+- import {useState} from "react";

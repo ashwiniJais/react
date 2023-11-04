@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { resList } from '../static/data/resList';
+// import { resList } from '../static/data/resList';
 import Header from '../component/Header';
 import Body from '../component/Body';
 
