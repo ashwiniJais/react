@@ -1,7 +1,9 @@
 import CDN_URL from "../utils/constants";
+import { useEffect } from "react";
 
 const ResturantCard=(props)=>{
     // console.log(props);
+    useEffect(()=>{console.log("resCard rendered")},[]);
     const {resData}=props;
     
     const {cloudinaryImageId,name,cuisines,avgRating}=resData.info;
