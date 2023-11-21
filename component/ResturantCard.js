@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 const ResturantCard=(props)=>{
     // console.log(props);
-    useEffect(()=>{console.log("resCard rendered")},[]);
+    useEffect(()=>{},[]);
     const {resData}=props;
     
     const {cloudinaryImageId,name,cuisines,avgRating}=resData.info;

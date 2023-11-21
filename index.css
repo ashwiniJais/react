@@ -86,3 +86,7 @@
       background-position: 100vw 0;
     }
   }
+
+  .filter{
+    display: flex;
+  }
