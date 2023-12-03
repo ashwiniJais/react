@@ -4,14 +4,19 @@ class UserClass extends React.Component{
 
     constructor(props){
         super(props);
-        console.log(props);
+        console.log(props.name +" Constructor");
 
         this.state ={
             count:0,
         }
     }
 
+    componentDidMount(){
+        console.log(this.props.name +" componentDidMount");
+    }
+
     render(){
+        console.log(this.props.name +"  render");
         // or destructure it on the fly before using the props
         return (
             <div className="user-card">
