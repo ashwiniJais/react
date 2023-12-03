@@ -7,31 +7,58 @@ class UserClass extends React.Component{
         console.log(props.name +" Constructor");
 
         this.state ={
-            count:0,
+            userInfo:{
+                name: "Still fetching...",
+                location: "Default"
+            }
         }
     }
 
-    componentDidMount(){
+    async componentDidMount(){
         console.log(this.props.name +" componentDidMount");
+        const data =await fetch("https://api.github.com/users/ashwiniJais");
+        const json=await data.json();
+
+        console.log(json);
+
+        this.setState({
+            userInfo:json,
+        })
+    }
+
+    componentDidUpdate(){
+        console.log("Component did update");
     }
 
     render(){
         console.log(this.props.name +"  render");
-        // or destructure it on the fly before using the props
+        const {name,location, avatar_url}=this.state.userInfo;
         return (
             <div className="user-card">
-                <h1>Count : {this.state.count}</h1>
-                <button onClick={()=>{
-                    // don't update state variable like this.state.count=this.state.count+1
-                    this.setState({
-                        count:this.state.count+1
-                    })
-                }}>Count Increase</button>
-                <h2>Nmae: {this.props.name}</h2>
-                <h2>Location: India</h2>
+                    <img src={avatar_url}></img>
+
+                <h2>Name: {name}</h2>
+                <h2>Location: {location}</h2>
             </div>
         )
     }
 }
 
 export default UserClass;
+
+/*
+    ---MOUNTING---
+    constructor(dummy)
+    render(dummy)
+        <HTML (dummy data)>
+
+    component Did Mount
+        <API call>
+        <this.setState > - it updates the dummy data with new data
+
+    ---UPDATE---
+        render(API data)
+            <HTML original data>
+        component did update
+
+*/

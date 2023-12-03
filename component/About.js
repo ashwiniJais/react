@@ -19,9 +19,7 @@ class About extends React.Component{
                         <h1>About</h1>
                         <h2>This is about page of our food app</h2>
             
-                        {/* <User name={"Ashwini (fn component)"}/> */}
                         <UserClass name={"First (class component)"}/>
-                        <UserClass name={"Second (class component)"}/>
                     </div>
             )
     }
@@ -47,16 +45,5 @@ class About extends React.Component{
     
 */
 
-// const About =()=>{
-//     return(
-//         <div>
-//             <h1>About</h1>
-//             <h2>This is about page of our food app</h2>
-
-//             <User name={"Ashwini (fn component)"}/>
-//             <UserClass name={"Ashwini (class component)"}/>
-//         </div>
-//     )
-// }
 
 export default About;
