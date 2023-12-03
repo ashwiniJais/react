@@ -8,10 +8,10 @@ const Header=()=>{
     // if dependency array is empty =[] => useEffect will be called only on initial render(just once)
     // if dependency array is nonEmpty =[btnName in this case] => useEffect will be called everyTime this dependency array element will be called
     useEffect(()=>{
-        console.log("useEffect of Header called");
+        // console.log("useEffect of Header called");
 
     });
-    console.log("Header is rendered");
+    // console.log("Header is rendered");
     return (
         <div className="header">
             <div className="logoContainer">
@@ -19,7 +19,7 @@ const Header=()=>{
             </div>
             <div className='nav-items'>
                 <ul>
-                    <li><Link to='/'>Home</Link></li>
+                    <li><Link to='/'>Home </Link></li>
                     <li><Link to='/about'>About</Link></li>
                     <li>
                         <Link to='/contact'>Contact Us</Link>
