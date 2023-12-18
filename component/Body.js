@@ -1,4 +1,5 @@
 
+import useOnlineStatus from "../utils/useOnlineStatus";
 import ResturantCard from "./ResturantCard";
 import  Shimmer  from "./Shimmer";
 import { useState, useEffect } from 'react';
@@ -17,7 +18,11 @@ const Body=()=>{
         const json= await data.json(); 
         setListOfResturant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setFilteredListOfResturant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        console.log(filteredListOfResturant);
+    }
+
+    let onlineStatus=useOnlineStatus();
+    if(onlineStatus===false){
+        return <h1>Looks like you're offline</h1>
     }
 
     if(listOfResturant?.length<=0){
