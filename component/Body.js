@@ -16,8 +16,10 @@ const Body=()=>{
     const fethcData=async()=>{
         const data=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const json= await data.json(); 
+        console.log("fethcData",json);
         setListOfResturant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setFilteredListOfResturant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        console.log("Body rendered", filteredListOfResturant);
     }
 
     let onlineStatus=useOnlineStatus();
@@ -31,23 +33,27 @@ const Body=()=>{
 
     return (
         <div className='body'>
-            <div className="filter">
-                <div className="search">
-                    <input className="search-box" type="text" value={searchText} onChange={(e)=>{setSearchText(e.target.value)}}></input>
-                    <button className="search-btn" onClick={()=>{
+            <div className="filter flex">
+                <div className="search m-4 p-4 ">
+                    <input className="border border-solid border-black" type="text" value={searchText} onChange={(e)=>{setSearchText(e.target.value)}}></input>
+                    <button className="search-btn m-4 py-2 px-4 bg-green-200 rounded-lg" onClick={()=>{
                         // filter the resturant based on search text
                         const newList=listOfResturant.filter((res)=>res.info.name.toLowerCase().includes(searchText.toLocaleLowerCase()));
                         setFilteredListOfResturant(newList);
                     }}>Search</button>
                 </div>
-                <button className="filter-btn" onClick={()=>{
-                    const filteredList=listOfResturant.filter((res)=>res.info.avgRating>3.9)
-                    setListOfResturant(filteredList)
-                }}>Top Rated ResturantCard</button>
+                <div className="m-4 p-4 ">
+                    <button className=" m-4 py-2 px-4 bg-yellow-200 rounded-lg" onClick={()=>{
+                        const filteredList=listOfResturant.filter((res)=>res.info.avgRating>3.9)
+                        setListOfResturant(filteredList)
+                    }}>Top Rated ResturantCard</button>
+                </div>
+                
             </div>
-            <div className='res-container'>
+            <div className='res-container flex flex-wrap'>
                 {
                     filteredListOfResturant?.map(resturant =>(
+                        // if restaurant is promoted -> make it highlighted
                         <Link to={"/restaurant/"+resturant.info.id}><ResturantCard  resData={resturant} /></Link>
                         // <ResturantCard  resData={resturant} />
                     ))

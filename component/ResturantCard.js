@@ -8,9 +8,9 @@ const ResturantCard=(props)=>{
     
     const {cloudinaryImageId,name,cuisines,avgRating}=resData.info;
     return (
-        <div className='res-card' style={{backgroundColor:'#f0f0f0'}}>
-            <img className='resLogo' alt="res-logo" src={CDN_URL  +cloudinaryImageId}/>
-            <h3>{name}</h3> 
+        <div className='m-4 p-4 w-[250px] rounded-lg bg-gray-50 hover:bg-gray-200'> 
+            <img className='resLogo rounded-lg' alt="res-logo" src={CDN_URL  +cloudinaryImageId}/>
+            <h3 className="font-bold py-2">{name}</h3> 
             <h4>{cuisines.join(", ")}</h4>
             <h4>{avgRating+" star"}</h4>
             <h4>32 mins</h4>
