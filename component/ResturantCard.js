@@ -1,10 +1,13 @@
+import UserContext from "../utils/UserContext";
 import CDN_URL from "../utils/constants";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 
 const ResturantCard=(props)=>{
     // console.log(props);
     useEffect(()=>{},[]);
     const {resData}=props;
+
+    const {loggedInUser}=useContext(UserContext);
     
     const {cloudinaryImageId,name,cuisines,avgRating}=resData.info;
     return (
@@ -14,6 +17,7 @@ const ResturantCard=(props)=>{
             <h4>{cuisines.join(", ")}</h4>
             <h4>{avgRating+" star"}</h4>
             <h4>32 mins</h4>
+            <h4>User: {loggedInUser}</h4>
 
         </div>
     )

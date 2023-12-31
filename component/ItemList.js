@@ -1,6 +1,6 @@
 // import CDN_URL from "../utils/constants.js";
 const ItemList=({items})=>{
-    console.log(items)
+    // console.log(items)
     if(!items  ||!items.length){
         return ;
     }

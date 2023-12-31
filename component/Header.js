@@ -1,10 +1,11 @@
 import logo from '../static/img/logo.png';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import useOnlineStatus from '../utils/useOnlineStatus';
+import UserContext from '../utils/UserContext';
 
 const Header=()=>{
-    const [btnName,setBtnName]=useState("Login");
+    
     // if no dependency array => useEffect is called on every render
     // if dependency array is empty =[] => useEffect will be called only on initial render(just once)
     // if dependency array is nonEmpty =[btnName in this case] => useEffect will be called everyTime this dependency array element will be called
@@ -13,6 +14,11 @@ const Header=()=>{
 
     });
     // console.log("Header is rendered");
+
+    const {loggedInUser}=useContext(UserContext);
+    console.log(loggedInUser);
+
+    const [btnName,setBtnName]=useState(loggedInUser);
 
     const onlineStatus=useOnlineStatus();
     return (
@@ -32,7 +38,7 @@ const Header=()=>{
                         <Link to='/grocery'>Grocery</Link>
                     </li>
                     <li className='px-1'>Cart</li>
-                    <button onClick={()=>{btnName=="Login"?(setBtnName("Logout")):setBtnName("Login")}}>{btnName}</button>
+                    <button className="font-bold" onClick={()=>{btnName=="LogOut"?setBtnName(loggedInUser):setBtnName("LogOut")}}>{btnName}</button>
                 </ul>
             </div>
         </div>

@@ -4,6 +4,8 @@ import ResturantCard, {withPromotedLabel} from "./ResturantCard";
 import  Shimmer  from "./Shimmer";
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
 
 const Body=()=>{
     const [listOfResturant, setListOfResturant]=useState([]);
@@ -30,6 +32,8 @@ const Body=()=>{
         return <h1>Looks like you're offline</h1>
     }
 
+    const {loggedInUser,setUserName}=useContext(UserContext);
+
     if(listOfResturant?.length<=0){
         return <Shimmer/>
     }
@@ -50,6 +54,10 @@ const Body=()=>{
                         const filteredList=listOfResturant.filter((res)=>res.info.avgRating>3.9)
                         setListOfResturant(filteredList)
                     }}>Top Rated ResturantCard</button>
+                </div>
+                <div  className="m-4 p-4" >
+                    <label>Username: </label>
+                    <input className="border border-solid border-black p-2" type="text" value={loggedInUser} onChange={(e)=>setUserName(e.target.value)}></input>
                 </div>
                 
             </div>
