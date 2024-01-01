@@ -1,5 +1,16 @@
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
+
 // import CDN_URL from "../utils/constants.js";
 const ItemList=({items})=>{
+
+    const dispatch=useDispatch();
+
+    const hanldeAddItem=(item)=>{
+        // dispatch an action
+        dispatch(addItem(item))
+    }
+
     // console.log(items)
     if(!items  ||!items.length){
         return ;
@@ -17,7 +28,7 @@ const ItemList=({items})=>{
                     </div>
                     <div className="w-1/4 p-4">
                         <div className="absolute">
-                            <button className="p-2 mx-16 bg-black text-white rounded-lg shadow-lg"> Add + </button>
+                            <button className="p-2 mx-16 bg-black text-white rounded-lg shadow-lg" onClick={()=>hanldeAddItem(item)}> Add + </button>
                         </div>
                         <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"+item?.card?.info?.imageId} />
                     </div>

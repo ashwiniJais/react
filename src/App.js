@@ -9,6 +9,9 @@ import Contact from '../component/Contact';
 import Error from '../component/Error';
 import RestaurantMenu from '../component/RestaurantMenu';
 import UserContext from '../utils/UserContext';
+import { Provider } from 'react-redux';
+import appStore from '../utils/appStore';
+import Cart from '../component/Cart';
 // import Grocery from '../component/Grocery';
 
 const Grocery =lazy(()=>import ('../component/Grocery'))
@@ -31,15 +34,15 @@ const AppLayout = ()=>{
     },[])
 
     return(
-        <UserContext.Provider value={{loggedInUser:userName, setUserName}}>
-            <div className='app'>
-                <UserContext.Provider value={{loggedInUser:"Ashwini 2"}}>
-                    <Header/>
-                </UserContext.Provider >
-                {/* This outlet will be replaced by the element from the router */}
-                <Outlet/>
-            </div>
-        </UserContext.Provider>
+        <Provider store={appStore}>
+            <UserContext.Provider value={{loggedInUser:userName, setUserName}}>
+                <div className='app'>
+                        <Header/>
+                    {/* This outlet will be replaced by the element from the router */}
+                    <Outlet/>
+                </div>
+            </UserContext.Provider>
+        </Provider>
     );
 }
 
@@ -67,6 +70,10 @@ const router= createBrowserRouter([
             {
                 path:'/grocery',
                 element:(<Suspense fallback = { <div> Please Wait... </div> } ><Grocery/></Suspense>),
+            },
+            {
+                path:'/cart',
+                element:<Cart/>
             }
         ],
         errorElement: <Error/>
